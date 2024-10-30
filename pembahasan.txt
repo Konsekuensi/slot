@@ -1,0 +1,50 @@
+bismillahirohaminorrohim 
+
+
+CARA KERJA MESIN SLOT
+
+Mesin slot menggunakan konsep Random Number Generator
+
+[TERDAPAT LIST KOMBINASI SLOT GACOR]
+
+>> SISTEM MEMASUKKAN KOIN
+>> PENGECEKKAN NILAI KOIN
+>> MENAMBAHKAN KREDIT DARI KOIN
+>> BERTARUH DENGAN KREDIT
+>> SISTEM RNG
+>> SISTEM STOP WHEEL
+>> CASHOUT
+
+
+MENU :
+> memasukkan koin
+> tampilkan kredit
+> main 
+> cashout
+
+
+
+KOMBINASI
+
+A = 🌟,🍒,🍉,🔄,⚡,🍇,💎,🍇,🍒,⚡,🔄,🍉,🌟,⚡,🍇,🔄,🍉,💎,⚡,🍇,🔄
+B = 🌟,🍒,🔄,🍇,🍉,🍒,🔄,⚡,⚡,🍇,💎,🍇,🔄,🍒,🍉,🍇,🔄,🍒,🍇,🔄,🍒
+C = 🌟,⚡,💎,🔄,🍇,🍉,🔄,🍇,⚡,🍉,🔄,🍇,🍉,⚡.🔄,🍇,🍉,⚡,🔄,🍇,🍒
+
+
+
+7 merah -> 🌟
+ceri    -> 🍒
+petir   -> ⚡
+biruu   -> 🍉
+hijau   -> 🍇
+replay  -> 🔄
+7 biru  -> 💎
+
+
+"🌟🌟🌟  💎💎💎  300 kredit"
+"🌟🌟💎  🌟💎💎  90  kredit"
+"🍉🍉🍉  🍇🍇🍇  15  kredit"
+"🍓🍓    8 kredit"
+"🍓      4 kredit"
+"🔄🔄🔄          Spin lagi"
+"⚡⚡⚡          Spin lagi, hadiah selanjutnya x2"
