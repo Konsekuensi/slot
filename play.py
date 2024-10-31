@@ -5,6 +5,7 @@ HADIAH = [0, 0, 1]      # INISIASI hadiah di sini nanti akan diupdate seiring fu
 FREESPIN = 0
 MULTIPLIER = 1
 
+
 def main():
     play()
 
