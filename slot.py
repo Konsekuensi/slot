@@ -1,4 +1,4 @@
-from utils import clear_terminal, enter_to_continue, kredit, update_kredit, tampilkan_kredit
+from utils import clear_terminal, enter_to_continue, kredit, update_kredit, tampilkan_kredit, nilai_kredit
 from play import play
 import sys
 
@@ -75,11 +75,11 @@ def cashout():
 
     tampilkan_kredit()
     cash = int(input("Berapa nominal yang ingin anda cashout? "))
-    if cash > kredit:
+    if cash > nilai_kredit():
         print("KREDIT TIDAK CUKUP")
         enter_to_continue()
     else: 
-        kredit = kredit - cash
+        update_kredit(-1 * cash)
         print(f"{cash} kredit berhasil dicairkan")
         enter_to_continue()
 

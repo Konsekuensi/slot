@@ -40,7 +40,7 @@ def play():
     
     while kred > 0:
         kred = nilai_kredit()
-        #clear_terminal()
+        clear_terminal()
         ans = input("Tekan Enter untuk Spin (ketik 0 untuk kembali) ")
 
         if ans == "0":
@@ -84,7 +84,7 @@ def bet(mode): # TODO
         HADIAH[1] = FREESPIN
         print("Freespin digunakan!")
     else:
-        update_kredit(-10 * mode)
+        update_kredit(-5 * mode)
 
     update_kredit(HADIAH[0] * MULTIPLIER)
     
@@ -133,7 +133,7 @@ def compare(comp): # return hadiah
         return 90
     elif freq[2] == 3 or freq[3] == 3:
         return 15
-    elif freq[4] == 2:
+    elif freq[4] == 2 or freq[4] == 3:
         return 8
     elif freq[4] == 1:
         return 4
