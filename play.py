@@ -71,45 +71,8 @@ def spin():
     return [atas, tengah, bawah]
 
 
-def bet(mode, display, hadiah): # TODO
-    # LOGIKA FREESPIN DAN MULTIPLIER MASIH BELUM TEPAT
-
-    spin = hadiah[1]
-    multiplier = hadiah[2]
-
-    def update(harga):
-        nonlocal spin, multiplier
-        update_kredit(hadiah[0] * multiplier)           # tambah kredit jika menang
-        
-        print(f"spin: {spin}")
-        print(f"multiplier: {multiplier}")
-
-        if multiplier != 1:
-            print("Menggunakan multiplier")
-            multiplier = 1
-        
-        if spin > 0:
-            spin -= 1
-            print("Menggunakan freespin!")
-            enter_to_continue()
-        else:
-            update_kredit(harga)                 # harga 1 spin
-
-
-        multiplier = hadiah[2]
-        spin += hadiah[1]
-
-
-
-    print(reward(mode, display))
-    hadiah = reward(mode, display)
-
-    if mode == 1:
-        update(-10)
-    elif mode == 2:
-        update(-20)
-    else:
-        update(-30)
+def bet(mode, display): # TODO
+    ...
 
 
 def compare(comp): # return hadiah
@@ -167,44 +130,8 @@ def reward(mode, display): # Return list hadiah dengan [Kredit (default=0), Free
     list4 = [display[0][0], display[1][1], display[2][2]] # diagonal kiri
     list5 = [display[2][0], display[1][1], display[0][2]] # diagonal kanan
 
-    if mode == 1:       # Horizontal tengah saja
-        hadiah = compare(list2)
-        if hadiah == "REROLL":
-            return [0, 1, 1]
-        elif hadiah == "REROLL+":
-            return [0, 1, 2]
-        else:
-            return [hadiah, 0, 1]
-        
-    elif mode == 2:     # Seluruh Baris
-        hadiah = [compare(list1), compare(list2), compare(list3)]
-        
-        hf = [0, 0, 1]
-        for i in hadiah:
-            if i == "REROLL":
-                hf[1] = hf[1] + 1
-            elif i == "REROLL+":
-                hf[1] = hf[1] + 1
-                hf[2] = hf[2] * 2
-            else:
-                hf[0] = hf[0] + i
-
-        return hf
-
-    elif mode == 3:     # Sama diagonalnya
-        hadiah = [compare(list1), compare(list2), compare(list3), compare(list4), compare(list5)]
-
-        hf = [0, 0, 1]
-        for i in hadiah:
-            if i == "REROLL":
-                hf[1] = hf[1] + 1
-            elif i == "REROLL+":
-                hf[1] = hf[1] + 1
-                hf[2] = hf[2] * 2
-            else:
-                hf[0] = hf[0] + i
-        
-        return hf
+def reward(mode, display): # update HADIAH dengan [Kredit (default=0), FreeSpin (default=0), Multiplier (default=1)]
+    ...
 
 
 def print_display(display):
