@@ -36,17 +36,12 @@ def menu():
     elif pilihan == "6":
         quit()
 
-    else:
-        print()
-        print("Pilihan tidak valid!")
-        print()
-
 
 def input_kredit():
     global kredit
 
     clear_terminal()
-    uang = int(input("Berapa dollar yang ingin dimasukkan (masukkan 0 untuk kembali)? "))
+    uang = int(input("Berapa dollar yang ingin dimasukkan (masukkan 0 untuk kembali)? "))       # Asumsikan user memasukkan bilangan bulat positif
     update_kredit(uang)
     
 
@@ -75,7 +70,7 @@ def cashout():
 
     clear_terminal()
     tampilkan_kredit()
-    cash = int(input("Berapa nominal yang ingin anda cashout? "))
+    cash = int(input("Berapa nominal yang ingin anda cashout? "))           # Asumsikan user hanya input bilangan bulat
     if cash > nilai_kredit():
         print("KREDIT TIDAK CUKUP")
         enter_to_continue()
