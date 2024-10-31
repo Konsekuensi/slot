@@ -10,17 +10,6 @@ def main():
 
 
 def play():
-    # KREDIT: ---
-    # ==============
-    #
-    #    ❔ ❔ ❔
-    #    ❔ ❔ ❔
-    #    ❔ ❔ ❔
-    # 
-    # ==============
-    # Opsi bet (1/2/3) {1 untuk baris tengah, 2 untuk baris atas dan bawah, 3 untuk diagonal}
-    # Enter untuk spin 
-    # Ketik EXIT untuk keluar
     global kredit, HADIAH
 
     display = [
@@ -36,32 +25,29 @@ def play():
     
     mode = 0
     while mode not in [1, 2, 3]:
-        mode = int(input("Masukkan mode spin: "))
+        mode = int(input("Masukkan mode spin (1/2/3): "))
     
     while kred > 0:
         kred = nilai_kredit()
         clear_terminal()
         ans = input("Tekan Enter untuk Spin (ketik 0 untuk kembali) ")
 
-        if ans == "0":
+        if ans == "0":      # KELUAR DARI PERMAINAN
             break
 
-        # DEBUG
         display = spin()
-
         reward(mode, display)
-        print(HADIAH)
         bet(mode)
-        
-        
         print_display(display)
 
         if kred <= 0:
             print("Kredit Anda habis")
             break
 
-        enter_to_continue()
+        ans = input("Tekan Enter untuk Spin (ketik 0 untuk kembali) ")
 
+        if ans == "0":      # KELUAR DARI PERMAINAN
+            break
 
 
 def spin():
@@ -76,22 +62,22 @@ def spin():
     return [atas, tengah, bawah]
 
 
-def bet(mode): # TODO
+def bet(mode): # Mengurangi kredit user seharga harga spin, dan menambahkan kredit user sebanyak yang dimenangkan
     global HADIAH, FREESPIN, MULTIPLIER
 
-    if FREESPIN > 0:           # Jika terdapat freespin
+    if FREESPIN > 0:            # Jika terdapat freespin
         FREESPIN -= 1
         HADIAH[1] = FREESPIN
-        print("Freespin digunakan!")
     else:
         update_kredit(-5 * mode)
 
     update_kredit(HADIAH[0] * MULTIPLIER)
+    if HADIAH[0] * MULTIPLIER != 0:
+        print(f"Selamat Anda mendapatkan {HADIAH[0] * MULTIPLIER} kredit!")
     
     if MULTIPLIER != 1:          # Jika multiplier digunakan
         MULTIPLIER = 1
         HADIAH[2] = MULTIPLIER
-        print("Multiplier digunakan!")
 
     HADIAH[0] = 0
     FREESPIN, MULTIPLIER = HADIAH[1], HADIAH[2]
@@ -145,8 +131,7 @@ def compare(comp): # return hadiah
         return 0
 
 
-
-def reward(mode, display): # TODO update HADIAH dengan [Kredit (default=0), FreeSpin (default=0), Multiplier (default=1)]
+def reward(mode, display): # update HADIAH dengan [Kredit (default=0), FreeSpin (default=0), Multiplier (default=1)]
     global HADIAH
     rows = [display[0], display[1], display[2]]
     diag1 = [display[0][0], display[1][1], display[2][2]]
@@ -169,7 +154,6 @@ def reward(mode, display): # TODO update HADIAH dengan [Kredit (default=0), Free
         for row in rows:        # Cek semua baris
             h = compare(row)
             update(h)
-        
         if mode == 3:           # Mode 3 only
             h = compare(diag1)
             update(h)

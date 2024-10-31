@@ -57,3 +57,17 @@ replay  -> 🔄
 "🍓      4 kredit"
 "🔄🔄🔄          Spin lagi"
 "⚡⚡⚡          Spin lagi, hadiah selanjutnya x2"
+
+
+
+    # KREDIT: ---
+    # ==============
+    #
+    #    ❔ ❔ ❔
+    #    ❔ ❔ ❔
+    #    ❔ ❔ ❔
+    # 
+    # ==============
+    # Opsi bet (1/2/3) {1 untuk baris tengah, 2 untuk baris atas dan bawah, 3 untuk diagonal}
+    # Enter untuk spin 
+    # Ketik EXIT untuk keluar

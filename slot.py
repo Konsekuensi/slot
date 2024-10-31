@@ -10,10 +10,8 @@ def main():
 
 def menu():
     clear_terminal()
-    print("SELAMAT DATANG DI MESIN SLOT GACOR PENGKOM WIN69")
-    print()
+    print("SELAMAT DATANG DI MESIN SLOT GACORR PENGKOM WIN69")
     print("================================================")
-    print()
     print("1. Memasukkan koin")
     print("2. Tampilkan kredit")
     print("3. Menang atau mati!")
@@ -53,8 +51,13 @@ def input_kredit():
     
 
 def kombinasi():
-    print("KOMBINASI GACORRR: ")
+    clear_terminal()
+    print("Mode Permainan:  ")
+    print("1. Baris tengah ")
+    print("2. Seluruh baris ")
+    print("3. Seluruh baris dan diagonal")
     print()
+    print("KOMBINASI GACORRR: ")
     print("🌟🌟🌟  💎💎💎  300 kredit")
     print("🌟🌟💎  🌟💎💎  90 kredit")
     print("🍉🍉🍉  🍇🍇🍇  15 kredit")
@@ -63,7 +66,6 @@ def kombinasi():
     print("🔄🔄🔄          Spin lagi")
     print("⚡⚡⚡          Spin lagi, hadiah selanjutnya x2")
     print()
-    print("1 Spin = 10 kredit")
 
     enter_to_continue()
 
@@ -72,7 +74,6 @@ def cashout():
     global kredit
 
     clear_terminal()
-
     tampilkan_kredit()
     cash = int(input("Berapa nominal yang ingin anda cashout? "))
     if cash > nilai_kredit():
