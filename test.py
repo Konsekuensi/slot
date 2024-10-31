@@ -1,11 +1,11 @@
-from play import bet
+from play import reward
 
-hadiah = [0,1,2]
+HADIAH = [0,1,2]
 test = [
     ["❔", "❔", "❔"],
     ["💎", "💎", "💎"],
     ["❔", "❔", "❔"]
 ]
 
-bet(1, test, hadiah)
+reward()
 

@@ -1,6 +1,9 @@
 from utils import LEN, LEFT, MIDDLE, RIGHT, SYMBOL, kredit, clear_terminal, enter_to_continue, update_kredit, tampilkan_kredit, nilai_kredit
 import random as rn
 
+HADIAH = [0, 0, 1]      # INISIASI hadiah di sini nanti akan diupdate seiring fungsi berjalan
+FREESPIN = 0
+MULTIPLIER = 1
 
 def main():
     play()
@@ -18,9 +21,8 @@ def play():
     # Opsi bet (1/2/3) {1 untuk baris tengah, 2 untuk baris atas dan bawah, 3 untuk diagonal}
     # Enter untuk spin 
     # Ketik EXIT untuk keluar
-    global kredit
+    global kredit, HADIAH
 
-    hadiah = [0, 0, 1]
     display = [
         ["❔", "❔", "❔"],
         ["❔", "❔", "❔"],
@@ -38,7 +40,7 @@ def play():
     
     while kred > 0:
         kred = nilai_kredit()
-        clear_terminal()
+        #clear_terminal()
         ans = input("Tekan Enter untuk Spin (ketik 0 untuk kembali) ")
 
         if ans == "0":
@@ -47,8 +49,11 @@ def play():
         # DEBUG
         display = spin()
 
-        bet(mode, display, hadiah)
-
+        reward(mode, display)
+        print(HADIAH)
+        bet(mode)
+        
+        
         print_display(display)
 
         if kred <= 0:
@@ -71,8 +76,25 @@ def spin():
     return [atas, tengah, bawah]
 
 
-def bet(mode, display): # TODO
-    ...
+def bet(mode): # TODO
+    global HADIAH, FREESPIN, MULTIPLIER
+
+    if FREESPIN > 0:           # Jika terdapat freespin
+        FREESPIN -= 1
+        HADIAH[1] = FREESPIN
+        print("Freespin digunakan!")
+    else:
+        update_kredit(-10 * mode)
+
+    update_kredit(HADIAH[0] * MULTIPLIER)
+    
+    if MULTIPLIER != 1:          # Jika multiplier digunakan
+        MULTIPLIER = 1
+        HADIAH[2] = MULTIPLIER
+        print("Multiplier digunakan!")
+
+    HADIAH[0] = 0
+    FREESPIN, MULTIPLIER = HADIAH[1], HADIAH[2]
 
 
 def compare(comp): # return hadiah
@@ -123,15 +145,36 @@ def compare(comp): # return hadiah
         return 0
 
 
-def reward(mode, display): # Return list hadiah dengan [Kredit (default=0), FreeSpin (default=0), Multiplier (default=1)]
-    list1 = [display[0][0], display[0][1], display[0][2]] # horizontal atas
-    list2 = [display[1][0], display[1][1], display[1][2]] # horizontal tengah
-    list3 = [display[2][0], display[2][1], display[2][2]] # horizontal bawah
-    list4 = [display[0][0], display[1][1], display[2][2]] # diagonal kiri
-    list5 = [display[2][0], display[1][1], display[0][2]] # diagonal kanan
 
-def reward(mode, display): # update HADIAH dengan [Kredit (default=0), FreeSpin (default=0), Multiplier (default=1)]
-    ...
+def reward(mode, display): # TODO update HADIAH dengan [Kredit (default=0), FreeSpin (default=0), Multiplier (default=1)]
+    global HADIAH
+    rows = [display[0], display[1], display[2]]
+    diag1 = [display[0][0], display[1][1], display[2][2]]
+    diag2 = [display[0][2], display[1][1], display[2][0]]
+    
+    def update(h):
+        if h == "REROLL":
+            HADIAH[1] += 1
+        elif h == "REROLL+":
+            HADIAH[1] += 1
+            HADIAH[2] *= 2
+        else:
+            HADIAH[0] += h
+
+    if mode == 1:       # Cek display[1] (horizontal tengah)
+        h = compare(display[1])
+        update(h)
+        
+    else:               # Cek mode 2 dan mode 3 
+        for row in rows:        # Cek semua baris
+            h = compare(row)
+            update(h)
+        
+        if mode == 3:           # Mode 3 only
+            h = compare(diag1)
+            update(h)
+            h = compare(diag2)
+            update(h)
 
 
 def print_display(display):
