@@ -1,0 +1,42 @@
+# Loop permainan sampai user memutuskan berhenti
+While TRUE:
+    TAMPILKAN TAMPIlAN MENU 
+    menu = input("Menu yang user mau")
+
+    # Menu untuk memasukkan koin
+    if menu == 1:
+        uang = input("Masukkan uang yang dimasukkan")
+        kredit = kredit + uang
+    
+    # Menu untuk menampilkan kredit
+    elif menu == 2:
+        print(kredit)
+
+    # Menu untuk bermain
+    elif menu == 3:
+        mode = input("Masukkan mode permainan")
+        # mode 1 untuk baris tengah, mode 2 untuk semua baris
+        # mode 3 untuk semua baris dan diagonal
+        While BERMAIN:
+            ACAK WHEEL
+            BANDINGKAN SIMBOL PADA WHEEL DENGAN HADIAH SESUAI DENGAN MODE 
+            TAMBAHKAN KREDIT SESUAI DENGAN HADIAH YANG DIDAPAT 
+            KURANGI KREDIT SESUAI HARGA SPIN
+            MAIN LAGI? IYA: pass; TIDAK; break
+            
+    # Menu untuk cashout
+    elif menu == 4:
+        cashout = input("Masukkan jumlah yang ingin dicairkan: ")
+        if cashout > kredit:
+            print("KREDIT TIDAK CUKUP")
+        else: 
+            kredit = kredit - cashout
+            print(kredit)
+
+    # Menu untuk menampilkan kombinasi
+    elif menu == 5:
+        TAMPILKAN KOMBINASI PERMAINAN
+
+    # Menu untuk keluar permainan
+    elif menu == 6:
+        KELUAR PERMAINAN (BREAK)
