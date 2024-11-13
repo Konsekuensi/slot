@@ -115,7 +115,7 @@ def compare(comp): # return hadiah
     
     # Bandingkan dengan list reward (kredit, reroll, atau reroll+)
     if freq[0] == 3 or freq[1] == 3:
-        return 300
+        return 3000
     elif (freq[0] == 2 and freq[1] == 1) or (freq[1] == 2 and freq[0] == 1): 
         return 90
     elif freq[2] == 3 or freq[3] == 3:
