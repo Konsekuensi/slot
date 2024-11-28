@@ -85,48 +85,28 @@ def bet(mode): # Mengurangi kredit user seharga harga spin, dan menambahkan kred
 
 
 def compare(comp): # return hadiah
-    # ["🌟", "💎", "🍉", "🍇", "🍓", "🔄", "⚡"]
-    #   0     1     2     3      4     5     6
-
-    freq = [0 for i in range(len(SYMBOL))]
+    freq = {
+        "🌟": 0, "💎": 0, "🍉": 0, "🍇": 0, "🍓": 0, "🔄": 0, "⚡": 0
+    }
     
     # jika terdapat simbol yang yang sama, masukkan sesuai index
     for symbol in comp:
-        if symbol == "🌟":
-            freq[0] = freq[0] + 1
-
-        elif symbol == "💎":
-            freq[1] = freq[1] + 1
-
-        elif symbol == "🍉":
-            freq[2] = freq[2] + 1
-
-        elif symbol == "🍇":
-            freq[3] = freq[3] + 1
-
-        elif symbol == "🍓":
-            freq[4] = freq[4] + 1
-
-        elif symbol == "🔄":
-            freq[5] = freq[5] + 1
-
-        elif symbol == "⚡":
-            freq[6] = freq[6] + 1
+        freq[symbol] += 1
     
     # Bandingkan dengan list reward (kredit, reroll, atau reroll+)
-    if freq[0] == 3 or freq[1] == 3:
+    if freq["🌟"] == 3 or freq["💎"] == 3:
         return 3000
-    elif (freq[0] == 2 and freq[1] == 1) or (freq[1] == 2 and freq[0] == 1): 
+    elif (freq["🌟"] == 2 and freq["💎"] == 1) or (freq["💎"] == 2 and freq["🌟"] == 1): 
         return 90
-    elif freq[2] == 3 or freq[3] == 3:
+    elif freq["🍉"] == 3 or freq["🍇"] == 3:
         return 15
-    elif freq[4] == 2 or freq[4] == 3:
+    elif freq["🍓"] == 2 or freq["🍓"] == 3:
         return 8
-    elif freq[4] == 1:
+    elif freq["🍓"] == 1:
         return 4
-    elif freq[5] == 3:
+    elif freq["🔄"] == 3:
         return "REROLL"
-    elif freq[6] == 3:
+    elif freq["⚡"] == 3:
         return "REROLL+"
     else:
         return 0
