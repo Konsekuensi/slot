@@ -1,6 +1,8 @@
 from utils import clear_terminal, enter_to_continue, kredit, update_kredit, tampilkan_kredit, nilai_kredit
 from play import play
 import sys
+from rich.table import Table
+from rich.console import Console
 
 
 def main():

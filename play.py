@@ -1,13 +1,9 @@
-from utils import LEN, LEFT, MIDDLE, RIGHT, SYMBOL, kredit, clear_terminal, enter_to_continue, update_kredit, tampilkan_kredit, nilai_kredit
+from utils import LEN, LEFT, MIDDLE, RIGHT, kredit, clear_terminal, update_kredit, tampilkan_kredit, nilai_kredit
 import random as rn
 
 HADIAH = [0, 0, 1]      # INISIASI hadiah di sini nanti akan diupdate seiring fungsi berjalan
 FREESPIN = 0
 MULTIPLIER = 1
-
-
-def main():
-    play()
 
 
 def play():
@@ -84,35 +80,34 @@ def bet(mode): # Mengurangi kredit user seharga harga spin, dan menambahkan kred
     FREESPIN, MULTIPLIER = HADIAH[1], HADIAH[2]
 
 
-def compare(comp): # return hadiah
-    freq = {
-        "🌟": 0, "💎": 0, "🍉": 0, "🍇": 0, "🍓": 0, "🔄": 0, "⚡": 0
-    }
+def reward(mode, display): # update HADIAH dengan [Kredit (default=0), FreeSpin (default=0), Multiplier (default=1)]  
+    def compare(comp): # return hadiah
+        freq = {
+            "🌟": 0, "💎": 0, "🍉": 0, "🍇": 0, "🍓": 0, "🔄": 0, "⚡": 0
+        }
+        
+        # jika terdapat simbol yang yang sama, masukkan sesuai index
+        for symbol in comp:
+            freq[symbol] += 1
+        
+        # Bandingkan dengan list reward (kredit, reroll, atau reroll+)
+        if freq["🌟"] == 3 or freq["💎"] == 3:
+            return 3000
+        elif (freq["🌟"] == 2 and freq["💎"] == 1) or (freq["💎"] == 2 and freq["🌟"] == 1): 
+            return 90
+        elif freq["🍉"] == 3 or freq["🍇"] == 3:
+            return 15
+        elif freq["🍓"] == 2 or freq["🍓"] == 3:
+            return 8
+        elif freq["🍓"] == 1:
+            return 4
+        elif freq["🔄"] == 3:
+            return "REROLL"
+        elif freq["⚡"] == 3:
+            return "REROLL+"
+        else:
+            return 0
     
-    # jika terdapat simbol yang yang sama, masukkan sesuai index
-    for symbol in comp:
-        freq[symbol] += 1
-    
-    # Bandingkan dengan list reward (kredit, reroll, atau reroll+)
-    if freq["🌟"] == 3 or freq["💎"] == 3:
-        return 3000
-    elif (freq["🌟"] == 2 and freq["💎"] == 1) or (freq["💎"] == 2 and freq["🌟"] == 1): 
-        return 90
-    elif freq["🍉"] == 3 or freq["🍇"] == 3:
-        return 15
-    elif freq["🍓"] == 2 or freq["🍓"] == 3:
-        return 8
-    elif freq["🍓"] == 1:
-        return 4
-    elif freq["🔄"] == 3:
-        return "REROLL"
-    elif freq["⚡"] == 3:
-        return "REROLL+"
-    else:
-        return 0
-
-
-def reward(mode, display): # update HADIAH dengan [Kredit (default=0), FreeSpin (default=0), Multiplier (default=1)]
     global HADIAH
     rows = [display[0], display[1], display[2]]
     diag1 = [display[0][0], display[1][1], display[2][2]]
@@ -157,4 +152,4 @@ def print_display(display):
 
 
 if __name__ == "__main__":
-    main()
+    play()
