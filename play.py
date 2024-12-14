@@ -1,6 +1,9 @@
 from utils import LEN, LEFT, MIDDLE, RIGHT, kredit, clear_terminal, update_kredit, tampilkan_kredit, nilai_kredit
 import random as rn
 
+MODE = 1
+ANIMATION = True
+
 HADIAH = [0, 0, 1]      # INISIASI hadiah di sini nanti akan diupdate seiring fungsi berjalan
 FREESPIN = 0
 MULTIPLIER = 1
@@ -17,12 +20,10 @@ def play():
 
     clear_terminal()
     kred = nilai_kredit()
-    print(kred)
-    print_display(display)
-    
-    mode = 0
-    while mode not in [1, 2, 3]:
-        mode = int(input("Masukkan mode spin (1/2/3): "))
+    print_display(display, False)
+    ans = input("Tekan Enter untuk Spin (ketik 0 untuk kembali) ")
+    if ans == "0":
+        return 0
     
     while kred > 0:
         kred = nilai_kredit()
@@ -33,9 +34,9 @@ def play():
             break
 
         display = spin()
-        reward(mode, display)
-        bet(mode)
-        print_display(display)
+        reward(MODE, display)
+        bet(MODE)
+        print_display(display, ANIMATION)
 
         if kred <= 0:
             print("Kredit Anda habis")
@@ -45,6 +46,35 @@ def play():
 
         if ans == "0":      # KELUAR DARI PERMAINAN
             break
+
+
+def pengaturan():
+    global MODE, ANIMATION
+
+    clear_terminal()
+    print("PENGATURAN: ")
+    print()
+    print("1. Pilih mode")
+    print("2. Animasi")
+    
+    pilihan = input("Masukkan pilihan Anda: ")
+    
+    if pilihan == "1":
+        clear_terminal()
+        print("Mode Permainan:  ")
+        print("1. Baris tengah ")
+        print("2. Seluruh baris ")
+        print("3. Seluruh baris dan diagonal")
+        MODE = int(input("Pilih mode yang anda inginkan: "))
+
+    elif pilihan == "2":
+        clear_terminal()
+        pil = input("Masukkan mode animasi (ON/OFF): ").lower()
+
+        if pil == "on":
+            ANIMATION = True
+        elif pil == "off":
+            ANIMATION = False
 
 
 def spin():
@@ -137,18 +167,18 @@ def reward(mode, display): # update HADIAH dengan [Kredit (default=0), FreeSpin 
             update(h)
 
 
-def print_display(display):
+def print_display(display, animation):
     global kredit
     tampilkan_kredit()
-    print("==============")
+    print("================================================")
     print()
     for baris in display:
-        print(end="   ")
+        print(end="                 ")
         for kolom in baris:
             print(kolom, end=" ")
         print()
     print()
-    print("==============")
+    print("================================================")
 
 
 if __name__ == "__main__":

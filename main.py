@@ -1,9 +1,6 @@
 from utils import clear_terminal, enter_to_continue, kredit, update_kredit, tampilkan_kredit, nilai_kredit
-from play import play
+from play import play, pengaturan
 import sys
-from rich.table import Table
-from rich.console import Console
-
 
 def main():
     while True:
@@ -14,28 +11,31 @@ def menu():
     clear_terminal()
     print("SELAMAT DATANG DI MESIN SLOT GACORR PENGKOM WIN69")
     print("================================================")
-    print("1. Memasukkan koin")
-    print("2. Tampilkan kredit")
-    print("3. Menang atau mati!")
-    print("4. Cashout")
-    print("5. Kombinasi")
-    print("6. Menyerah")
+    print("1. Menang atau Mati!")
+    print("2. Masukkan Kredit")
+    print("3. Tampilkan Kredit")
+    print("4. Pengaturan")
+    print("5. Cashout")
+    print("6. Cara Bermain")
+    print("7. Menyerah")
 
     pilihan = input("Masukkan pilihan anda: ")
 
     if pilihan == "1":
-        input_kredit()
+        play()
     elif pilihan == "2":
+        input_kredit()
+    elif pilihan == "3":
         clear_terminal()
         tampilkan_kredit()
         enter_to_continue()
-    elif pilihan == "3":
-        play()
     elif pilihan == "4":
-        cashout()
+        pengaturan()
     elif pilihan == "5":
-        kombinasi()
+        cashout()
     elif pilihan == "6":
+        cara_bermain()
+    elif pilihan == "7":
         quit()
 
 
@@ -47,22 +47,39 @@ def input_kredit():
     update_kredit(uang)
     
 
-def kombinasi():
+def cara_bermain():
     clear_terminal()
+    print(
+        """Panduan Cara Bermain:
+
+    1. Silakan mengisi saldo anda pada menu 'Masukkan koin'
+    2. Silakan mengecek saldo anda pada menu 'Tampilkan kredit'
+    3. Silakan memilih mode bermain pada menu 'Pengaturan' (mode default = 1)
+    3. Silakan berjudi sepuas-puasnya pada menu 'Menang atau mati!', Yang Mahakuasa melihat kelakuan anda, bermainlah sesuai dengan kapasitas dosa anda 
+    4. Jika anda cupu, silakan melakukan cashout di menu 'Cashout'
+    5. Jika anda sudah bertaubat, silakan menyerah dengan memilih 'Menyerah'
+    """
+    )
+    print()
     print("Mode Permainan:  ")
-    print("1. Baris tengah ")
-    print("2. Seluruh baris ")
-    print("3. Seluruh baris dan diagonal")
+    print("    1. Baris tengah ")
+    print("    2. Seluruh baris ")
+    print("    3. Seluruh baris dan diagonal")
     print()
     print("KOMBINASI GACORRR: ")
-    print("🌟🌟🌟  💎💎💎  3000  kredit")
-    print("🌟🌟💎  🌟💎💎  90    kredit")
-    print("🍉🍉🍉  🍇🍇🍇  15    kredit")
-    print("🍓🍓    8 kredit")
-    print("🍓      4 kredit")
-    print("🔄🔄🔄          Spin lagi")
-    print("⚡⚡⚡          Spin lagi, hadiah selanjutnya x2")
+    print("    🌟🌟🌟  💎💎💎  3000  kredit")
+    print("    🌟🌟💎  🌟💎💎  90    kredit")
+    print("    🍉🍉🍉  🍇🍇🍇  15    kredit")
+    print("    🍓🍓    8 kredit")
+    print("    🍓      4 kredit")
+    print("    🔄🔄🔄          Spin lagi")
+    print("    ⚡⚡⚡          Spin lagi, hadiah selanjutnya x2")
     print()
+    print()
+    print("""
+          Selamat Berinvestasi
+        "99% Penjudi menyerah sebelum kemenangan besarnya" - Waren Bopet Padang
+          """)
 
     enter_to_continue()
 
